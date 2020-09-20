@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sound_recorder/stores/recorder/recorder_store.dart';
+import 'package:sounds/sounds.dart';
 import 'widgets/player_section.dart';
 import 'widgets/recorder_section.dart';
 
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    recorderStore.init();
+    recorderStore.init(context);
   }
 
   @override
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 60.0,),
           PlayerSection(recorderStore: recorderStore,),
           SizedBox(height: 20.0,),
-          Center(child: Text('By Vijay Rathod', style: TextStyle(fontSize: 20.0, color: Colors.grey.withOpacity(0.4)),))
+          Center(child: Text(recorderStore.track.artist, style: TextStyle(fontSize: 20.0, color: Colors.grey.withOpacity(0.4)),))
         ],
       ),
     );

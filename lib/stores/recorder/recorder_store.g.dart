@@ -27,13 +27,13 @@ mixin _$RecorderStore on _RecorderStore, Store {
   final _$playerStateAtom = Atom(name: '_RecorderStore.playerState');
 
   @override
-  PlayerState get playerState {
+  PlayState get playerState {
     _$playerStateAtom.reportRead();
     return super.playerState;
   }
 
   @override
-  set playerState(PlayerState value) {
+  set playerState(PlayState value) {
     _$playerStateAtom.reportWrite(value, super.playerState, () {
       super.playerState = value;
     });
@@ -131,36 +131,6 @@ mixin _$RecorderStore on _RecorderStore, Store {
     });
   }
 
-  final _$encoderSupportedAtom = Atom(name: '_RecorderStore.encoderSupported');
-
-  @override
-  bool get encoderSupported {
-    _$encoderSupportedAtom.reportRead();
-    return super.encoderSupported;
-  }
-
-  @override
-  set encoderSupported(bool value) {
-    _$encoderSupportedAtom.reportWrite(value, super.encoderSupported, () {
-      super.encoderSupported = value;
-    });
-  }
-
-  final _$decoderSupportedAtom = Atom(name: '_RecorderStore.decoderSupported');
-
-  @override
-  bool get decoderSupported {
-    _$decoderSupportedAtom.reportRead();
-    return super.decoderSupported;
-  }
-
-  @override
-  set decoderSupported(bool value) {
-    _$decoderSupportedAtom.reportWrite(value, super.decoderSupported, () {
-      super.decoderSupported = value;
-    });
-  }
-
   final _$_RecorderStoreActionController =
       ActionController(name: '_RecorderStore');
 
@@ -220,11 +190,11 @@ mixin _$RecorderStore on _RecorderStore, Store {
   }
 
   @override
-  dynamic setPlayerState(PlayerState p) {
+  dynamic setPlayState(PlayState p) {
     final _$actionInfo = _$_RecorderStoreActionController.startAction(
-        name: '_RecorderStore.setPlayerState');
+        name: '_RecorderStore.setPlayState');
     try {
-      return super.setPlayerState(p);
+      return super.setPlayState(p);
     } finally {
       _$_RecorderStoreActionController.endAction(_$actionInfo);
     }
@@ -240,9 +210,7 @@ playerTxt: ${playerTxt},
 dbLevel: ${dbLevel},
 duration: ${duration},
 maxDuration: ${maxDuration},
-sliderCurrentPosition: ${sliderCurrentPosition},
-encoderSupported: ${encoderSupported},
-decoderSupported: ${decoderSupported}
+sliderCurrentPosition: ${sliderCurrentPosition}
     ''';
   }
 }

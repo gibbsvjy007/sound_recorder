@@ -32,10 +32,8 @@ dependencies:
   mobx:
   flutter_mobx:
   provider:
-  flutter_sound:
+  sounds: ^1.0.0-beta13
   permission_handler:
-  path:
-  path_provider:
 
 dev_dependencies:
   flutter_test:
@@ -44,8 +42,8 @@ dev_dependencies:
   mobx_codegen:
   json_serializable:
 
-dependency_overrides:
-  analyzer: '0.39.14'
+#dependency_overrides:
+#  analyzer: '0.39.14'
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

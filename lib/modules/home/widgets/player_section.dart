@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_sound/flutter_sound.dart';
+import 'package:sound_recorder/models/enums.dart';
 import 'package:sound_recorder/stores/recorder/recorder_store.dart';
 
 class PlayerSection extends StatelessWidget {
@@ -15,12 +15,15 @@ class PlayerSection extends StatelessWidget {
     return Observer(
         name: 'player_section_observer',
         builder: (context) {
-          PlayerState playerState = recorderStore.playerState;
+          PlayState playerState = recorderStore.playerState;
+          print(playerState);
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 30.0,),
+              SizedBox(
+                height: 30.0,
+              ),
               Observer(builder: (context) {
                 String playerTxt = recorderStore.playerTxt;
                 return Container(
@@ -34,14 +37,15 @@ class PlayerSection extends StatelessWidget {
                   ),
                 );
               }),
-
               Row(
                 children: <Widget>[
                   IconButton(
                     iconSize: 50.0,
                     onPressed: recorderStore.onStartPlayerPressed,
                     icon: Icon(
-                      playerState == PlayerState.isPlaying ? Icons.play_circle_outline : Icons.play_circle_filled,
+                      playerState == PlayState.isPlaying
+                          ? Icons.play_circle_outline
+                          : Icons.play_circle_filled,
                       color: Colors.white,
                     ),
                   ),
@@ -49,7 +53,9 @@ class PlayerSection extends StatelessWidget {
                     iconSize: 50.0,
                     onPressed: recorderStore.onPauseResumePlayerPressed,
                     icon: Icon(
-                      playerState == PlayerState.isPlaying ? Icons.pause_circle_outline : Icons.pause_circle_filled,
+                      playerState == PlayState.isPlaying
+                          ? Icons.pause_circle_outline
+                          : Icons.pause_circle_filled,
                       color: Colors.white,
                     ),
                   ),
@@ -65,7 +71,9 @@ class PlayerSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(
+                height: 20.0,
+              ),
               Observer(
                   name: 'play_slider_observer',
                   builder: (context) {
@@ -79,7 +87,7 @@ class PlayerSection extends StatelessWidget {
                             min: 0.0,
                             max: maxDuration,
                             onChanged: (double value) async {
-                              await recorderStore.playerModule.seekToPlayer(
+                              await recorderStore.playerModule.seekTo(
                                   Duration(milliseconds: value.toInt()));
                             },
                             divisions:

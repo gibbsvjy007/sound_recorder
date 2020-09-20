@@ -13,3 +13,8 @@ enum Media {
   stream,
   remoteExampleFile,
 }
+
+enum PlayState{
+  isPlaying,
+  isStopped
+}
